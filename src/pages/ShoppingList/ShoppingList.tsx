@@ -6,8 +6,8 @@ import IContentItem from '../../interfaces/IContentItem';
 import './style.css';
 
 const db = firebase.database();
-const pendingRef = 'shopping-list/pending';
-const completedRef = 'shopping-list/completed';
+const pendingRef = db.ref('shopping-list/pending');
+const completedRef = db.ref('shopping-list/completed');
 
 function ShoppingList() {
   const {user} = useContext(UserContext);
@@ -16,7 +16,7 @@ function ShoppingList() {
   const [pending, setPending] = useState<IContentItem[]>([]);
 
   useEffect(() => {
-    const unsubscribePending = db.ref(pendingRef).on('value', (snapshot) => {
+    const unsubscribePending = pendingRef.on('value', (snapshot) => {
       const pendingList: IContentItem[] = [];
       snapshot.forEach((doc) => {
         pendingList.push({...doc.val(), key: doc.key});
@@ -26,8 +26,7 @@ function ShoppingList() {
       }
     });
 
-    const unsubscribeCompleted = db
-      .ref(completedRef)
+    const unsubscribeCompleted = completedRef
       .orderByKey()
       .limitToLast(5)
       .on('value', (snapshot) => {
@@ -43,8 +42,8 @@ function ShoppingList() {
       });
 
     return () => {
-      db.ref(pendingRef).off('value', unsubscribePending);
-      db.ref(completedRef).off('value', unsubscribeCompleted);
+      pendingRef.off('value', unsubscribePending);
+      completedRef.off('value', unsubscribeCompleted);
     };
   });
 
@@ -54,7 +53,7 @@ function ShoppingList() {
     const note = inputEl.current.value.trim();
     if (note === '') return;
 
-    db.ref(pendingRef).push().set({user, note, at: Date()});
+    pendingRef.push().set({user, note, at: Date()});
     inputEl.current.value = '';
   };
 
@@ -66,8 +65,9 @@ function ShoppingList() {
 
   const toggle = async (bucket: string, key: string) => {
     try {
-      let from: string;
-      let to: string;
+      let from: firebase.database.Reference;
+      let to: firebase.database.Reference;
+      console.log(typeof pendingRef);
       if (bucket === 'pending') {
         from = pendingRef;
         to = completedRef;
@@ -78,10 +78,10 @@ function ShoppingList() {
         console.error('Invalid bucket name.');
         return;
       }
-      const snap = await db.ref(from).child(key).once('value');
+      const snap = await from.child(key).once('value');
       const val = {...snap.val()};
-      db.ref(to).push().set(val);
-      db.ref(from).child(key).remove();
+      to.push().set(val);
+      from.child(key).remove();
     } catch (err) {
       console.error(err.message);
     }
