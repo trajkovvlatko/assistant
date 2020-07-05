@@ -4,12 +4,14 @@ import INote from '../../interfaces/INote';
 
 import './style.css';
 
-function NoteItem(props: {row: INote; remove: (key: string) => void}) {
+function ContentItem(props: {row: INote; remove?: (key: string) => void}) {
   const {row} = props;
 
   const remove = () => {
-    if (window.confirm('Are you sure that you want to remove this note?')) {
-      props.remove(row.key);
+    if (props.remove) {
+      if (window.confirm('Are you sure that you want to remove this note?')) {
+        props.remove(row.key);
+      }
     }
   };
 
@@ -21,11 +23,13 @@ function NoteItem(props: {row: INote; remove: (key: string) => void}) {
         <i>{at}</i>
       </div>
       <b>{row.user}</b>: {row.note}
-      <div className='remove' onClick={remove}>
-        &times;
-      </div>
+      {props.remove && (
+        <div className='remove' onClick={remove}>
+          &times;
+        </div>
+      )}
     </div>
   );
 }
 
-export default NoteItem;
+export default ContentItem;

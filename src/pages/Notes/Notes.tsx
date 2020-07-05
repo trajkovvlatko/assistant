@@ -1,7 +1,7 @@
 import React, {useContext, useRef, useState, useEffect} from 'react';
 import firebase from '../../firebase';
 import UserContext from '../../contexts/UserContext';
-import NoteItem from '../../components/NoteItem/NoteItem';
+import ContentItem from '../../components/ContentItem/ContentItem';
 import INote from '../../interfaces/INote';
 import './style.css';
 
@@ -51,7 +51,7 @@ function Notes() {
       <h1>Notes</h1>
       <div className='notes-list'>
         {notes.map((row: INote) => (
-          <NoteItem row={row} remove={remove} key={row.at} />
+          <ContentItem row={row} remove={remove} key={row.at} />
         ))}
       </div>
 
