@@ -67,7 +67,6 @@ function ShoppingList() {
     try {
       let from: firebase.database.Reference;
       let to: firebase.database.Reference;
-      console.log(typeof pendingRef);
       if (bucket === 'pending') {
         from = pendingRef;
         to = completedRef;

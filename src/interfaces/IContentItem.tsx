@@ -3,4 +3,6 @@ export default interface IContentItem {
   user: string;
   note: string;
   at: string;
+  dueDate?: string;
+  duration?: number;
 }

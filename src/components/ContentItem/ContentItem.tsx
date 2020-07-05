@@ -38,8 +38,20 @@ function ContentItem(props: IProps) {
       : '';
   return (
     <div className={`card note ${className}`}>
-      <div className='date-time'>
-        <i>{at}</i>
+      <div>
+        <div className='date-time'>
+          <i>{at}</i>
+        </div>
+        {row.dueDate && (
+          <div className='due-date'>
+            Due date: <span>{row.dueDate}</span>
+          </div>
+        )}
+        {row.duration && (
+          <div className='duration'>
+            Estimated: <span>{row.duration} minutes</span>
+          </div>
+        )}
       </div>
       {props.toggle && (
         <button className='toggle' onClick={toggle}>

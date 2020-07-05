@@ -27,8 +27,23 @@
 
 .card .date-time {
   height: 22px;
+  width: 100px;
   font-size: 11px;
   color: #888;
+  display: inline-block;
+}
+
+.card .duration,
+.card .due-date {
+  height: 22px;
+  font-size: 11px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.card .duration span,
+.card .due-date span {
+  color: red;
 }
 
 .card .toggle {
