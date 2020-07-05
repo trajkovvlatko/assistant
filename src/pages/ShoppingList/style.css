@@ -1,0 +1,21 @@
+.shopping-lists {
+  max-height: calc(100vh - 130px);
+  overflow: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.shopping-list-form {
+  position: absolute;
+  bottom: 15px;
+  width: calc(100% - 30px);
+}
+
+.shopping-list-form input {
+  width: calc(100% - 133px);
+  margin-right: 15px;
+}
+
+.shopping-list-form button {
+  width: 100px;
+}

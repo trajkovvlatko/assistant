@@ -4,7 +4,16 @@ import INote from '../../interfaces/INote';
 
 import './style.css';
 
-function ContentItem(props: {row: INote; remove?: (key: string) => void}) {
+interface IProps {
+  row: INote;
+  remove?: (key: string) => void;
+  toggle?: {
+    cb: (bucket: string, key: string) => void;
+    bucket: string;
+  };
+}
+
+function ContentItem(props: IProps) {
   const {row} = props;
 
   const remove = () => {
@@ -15,14 +24,29 @@ function ContentItem(props: {row: INote; remove?: (key: string) => void}) {
     }
   };
 
+  const toggle = () => {
+    if (props.toggle) {
+      props.toggle.cb(props.toggle.bucket, row.key);
+    }
+  };
+
   const at = new Date(row.at).toISOString().replace('T', ' ').substr(0, 16);
 
+  const className =
+    props.toggle && props.toggle.bucket === 'completed'
+      ? props.toggle.bucket
+      : '';
   return (
-    <div className='card note'>
+    <div className={`card note ${className}`}>
       <div className='date-time'>
         <i>{at}</i>
       </div>
-      <b>{row.user}</b>: {row.note}
+      {props.toggle && (
+        <button className='toggle' onClick={toggle}>
+          Toggle
+        </button>
+      )}
+      <b>{row.user}</b>: <span className='content'>{row.note}</span>
       {props.remove && (
         <div className='remove' onClick={remove}>
           &times;

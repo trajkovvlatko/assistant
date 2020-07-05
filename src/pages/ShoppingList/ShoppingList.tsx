@@ -1,7 +1,128 @@
-import React from 'react';
+import React, {useContext, useRef, useState, useEffect} from 'react';
+import firebase from '../../firebase';
+import UserContext from '../../contexts/UserContext';
+import ContentItem from '../../components/ContentItem/ContentItem';
+import INote from '../../interfaces/INote';
+import './style.css';
+
+const db = firebase.database();
+const pendingRef = 'shopping-list/pending';
+const completedRef = 'shopping-list/completed';
 
 function ShoppingList() {
-  return <>ShoppingList</>;
+  const {user} = useContext(UserContext);
+  const inputEl = useRef<HTMLInputElement>(null);
+  const [completed, setCompleted] = useState<INote[]>([]);
+  const [pending, setPending] = useState<INote[]>([]);
+
+  useEffect(() => {
+    const unsubscribePending = db.ref(pendingRef).on('value', (snapshot) => {
+      const pendingList: INote[] = [];
+      snapshot.forEach((doc) => {
+        pendingList.push({...doc.val(), key: doc.key});
+      });
+      if (pendingList.length !== pending.length) {
+        setPending(pendingList.reverse());
+      }
+    });
+
+    const unsubscribeCompleted = db
+      .ref(completedRef)
+      .orderByKey()
+      .limitToLast(5)
+      .on('value', (snapshot) => {
+        const completedList: INote[] = [];
+        snapshot.forEach((doc) => {
+          completedList.push({...doc.val(), key: doc.key});
+        });
+        const oldKeys = JSON.stringify(completed.map((m) => m.key).sort());
+        const newKeys = JSON.stringify(completedList.map((m) => m.key).sort());
+        if (oldKeys !== newKeys) {
+          setCompleted(completedList.reverse());
+        }
+      });
+
+    return () => {
+      db.ref(pendingRef).off('value', unsubscribePending);
+      db.ref(completedRef).off('value', unsubscribeCompleted);
+    };
+  });
+
+  const save = () => {
+    if (!inputEl || !inputEl.current) return;
+
+    const note = inputEl.current.value.trim();
+    if (note === '') return;
+
+    db.ref(pendingRef).push().set({user, note, at: Date()});
+    inputEl.current.value = '';
+  };
+
+  const onInputKeyUp = (e: React.KeyboardEvent) => {
+    if (e.keyCode !== 13) return;
+
+    save();
+  };
+
+  const toggle = async (bucket: string, key: string) => {
+    try {
+      let from: string;
+      let to: string;
+      if (bucket === 'pending') {
+        from = pendingRef;
+        to = completedRef;
+      } else if (bucket === 'completed') {
+        from = completedRef;
+        to = pendingRef;
+      } else {
+        console.error('Invalid bucket name.');
+        return;
+      }
+      const snap = await db.ref(from).child(key).once('value');
+      const val = {...snap.val()};
+      db.ref(to).push().set(val);
+      db.ref(from).child(key).remove();
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  return (
+    <>
+      <h1>Shopping list</h1>
+
+      <div className='shopping-lists'>
+        <b>Pending</b>
+        <div className='pending-list'>
+          {pending.map((row: INote) => (
+            <ContentItem
+              row={row}
+              key={row.at}
+              toggle={{cb: toggle, bucket: 'pending'}}
+            />
+          ))}
+        </div>
+
+        <b>Completed</b>
+        <div className='completed-list'>
+          {completed.map((row: INote) => (
+            <ContentItem
+              row={row}
+              key={row.at}
+              toggle={{cb: toggle, bucket: 'completed'}}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className='shopping-list-form'>
+        <input type='text' ref={inputEl} onKeyUp={onInputKeyUp} />
+        <button className='save' onClick={save}>
+          Add
+        </button>
+      </div>
+    </>
+  );
 }
 
 export default ShoppingList;

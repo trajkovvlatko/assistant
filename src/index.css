@@ -47,35 +47,6 @@ li {
   position: relative;
 }
 
-.card {
-  width: 100%;
-  background-color: white;
-  border-radius: 3px;
-  margin-bottom: 15px;
-  padding: 15px;
-  position: relative;
-  box-sizing: border-box;
-}
-
-.card .remove {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  width: 15px;
-  height: 15px;
-  cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  line-height: 15px;
-  text-align: center;
-}
-
-.card .date-time {
-  height: 22px;
-  font-size: 11px;
-  color: #888;
-}
-
 @media screen and (max-width: 540px) {
   .container {
     flex-direction: column;
