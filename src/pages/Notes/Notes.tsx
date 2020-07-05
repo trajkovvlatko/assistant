@@ -2,7 +2,7 @@ import React, {useContext, useRef, useState, useEffect} from 'react';
 import firebase from '../../firebase';
 import UserContext from '../../contexts/UserContext';
 import ContentItem from '../../components/ContentItem/ContentItem';
-import INote from '../../interfaces/INote';
+import IContentItem from '../../interfaces/IContentItem';
 import './style.css';
 
 const ref = firebase.database().ref('notes');
@@ -10,11 +10,11 @@ const ref = firebase.database().ref('notes');
 function Notes() {
   const {user} = useContext(UserContext);
   const inputEl = useRef<HTMLInputElement>(null);
-  const [notes, setNotes] = useState<INote[]>([]);
+  const [notes, setNotes] = useState<IContentItem[]>([]);
 
   useEffect(() => {
     const unsubscribe = ref.on('value', (snapshot) => {
-      const notesList: INote[] = [];
+      const notesList: IContentItem[] = [];
       snapshot.forEach((doc) => {
         notesList.push({...doc.val(), key: doc.key});
       });
@@ -50,7 +50,7 @@ function Notes() {
     <>
       <h1>Notes</h1>
       <div className='notes-list'>
-        {notes.map((row: INote) => (
+        {notes.map((row: IContentItem) => (
           <ContentItem row={row} remove={remove} key={row.at} />
         ))}
       </div>

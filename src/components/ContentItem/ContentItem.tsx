@@ -1,11 +1,11 @@
 import React from 'react';
 
-import INote from '../../interfaces/INote';
+import IContentItem from '../../interfaces/IContentItem';
 
 import './style.css';
 
 interface IProps {
-  row: INote;
+  row: IContentItem;
   remove?: (key: string) => void;
   toggle?: {
     cb: (bucket: string, key: string) => void;

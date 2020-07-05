@@ -2,7 +2,7 @@ import React, {useContext, useRef, useState, useEffect} from 'react';
 import firebase from '../../firebase';
 import UserContext from '../../contexts/UserContext';
 import ContentItem from '../../components/ContentItem/ContentItem';
-import INote from '../../interfaces/INote';
+import IContentItem from '../../interfaces/IContentItem';
 import './style.css';
 
 const db = firebase.database();
@@ -12,12 +12,12 @@ const completedRef = 'shopping-list/completed';
 function ShoppingList() {
   const {user} = useContext(UserContext);
   const inputEl = useRef<HTMLInputElement>(null);
-  const [completed, setCompleted] = useState<INote[]>([]);
-  const [pending, setPending] = useState<INote[]>([]);
+  const [completed, setCompleted] = useState<IContentItem[]>([]);
+  const [pending, setPending] = useState<IContentItem[]>([]);
 
   useEffect(() => {
     const unsubscribePending = db.ref(pendingRef).on('value', (snapshot) => {
-      const pendingList: INote[] = [];
+      const pendingList: IContentItem[] = [];
       snapshot.forEach((doc) => {
         pendingList.push({...doc.val(), key: doc.key});
       });
@@ -31,7 +31,7 @@ function ShoppingList() {
       .orderByKey()
       .limitToLast(5)
       .on('value', (snapshot) => {
-        const completedList: INote[] = [];
+        const completedList: IContentItem[] = [];
         snapshot.forEach((doc) => {
           completedList.push({...doc.val(), key: doc.key});
         });
@@ -94,7 +94,7 @@ function ShoppingList() {
       <div className='shopping-lists'>
         <b>Pending</b>
         <div className='pending-list'>
-          {pending.map((row: INote) => (
+          {pending.map((row: IContentItem) => (
             <ContentItem
               row={row}
               key={row.at}
@@ -105,7 +105,7 @@ function ShoppingList() {
 
         <b>Completed</b>
         <div className='completed-list'>
-          {completed.map((row: INote) => (
+          {completed.map((row: IContentItem) => (
             <ContentItem
               row={row}
               key={row.at}

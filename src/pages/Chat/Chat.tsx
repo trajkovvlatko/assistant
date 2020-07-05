@@ -2,7 +2,7 @@ import React, {useContext, useRef, useState, useEffect} from 'react';
 import firebase from '../../firebase';
 import UserContext from '../../contexts/UserContext';
 import ContentItem from '../../components/ContentItem/ContentItem';
-import INote from '../../interfaces/INote';
+import IContentItem from '../../interfaces/IContentItem';
 import './style.css';
 
 const ref = firebase.database().ref('chat');
@@ -11,14 +11,14 @@ function Chat() {
   const {user} = useContext(UserContext);
   const inputEl = useRef<HTMLInputElement>(null);
   const listEl = useRef<HTMLInputElement>(null);
-  const [messages, setMessages] = useState<INote[]>([]);
+  const [messages, setMessages] = useState<IContentItem[]>([]);
 
   useEffect(() => {
     const unsubscribe = ref
       .orderByKey()
       .limitToLast(20)
       .on('value', (snapshot) => {
-        const messagesList: INote[] = [];
+        const messagesList: IContentItem[] = [];
         snapshot.forEach((doc) => {
           messagesList.push({...doc.val(), key: doc.key});
         });
@@ -55,7 +55,7 @@ function Chat() {
     <>
       <h1>Chat</h1>
       <div className='messages-list' ref={listEl}>
-        {messages.map((row: INote) => (
+        {messages.map((row: IContentItem) => (
           <div className={user === row.user ? 'mine' : 'others'} key={row.at}>
             <ContentItem row={row} />
           </div>

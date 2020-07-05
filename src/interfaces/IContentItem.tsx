@@ -1,4 +1,4 @@
-export default interface INote {
+export default interface IContentItem {
   key: string;
   user: string;
   note: string;
