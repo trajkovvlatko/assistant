@@ -1,0 +1,28 @@
+.watch-lists {
+  max-height: calc(100vh - 130px);
+  overflow: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.watch-list-form {
+  position: absolute;
+  bottom: 15px;
+  width: calc(100% - 30px);
+}
+
+.watch-list-form .film {
+  width: calc(100% - 460px);
+  margin-right: 15px;
+}
+
+.watch-list-form .duration,
+.watch-list-form .due-date {
+  margin-right: 15px;
+  height: 30px;
+  width: 130px;
+}
+
+.watch-list-form button {
+  width: 100px;
+}

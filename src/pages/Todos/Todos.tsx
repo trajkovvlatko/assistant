@@ -75,6 +75,7 @@ function Todos() {
     pendingRef.push().set({user, note, duration, dueDate, at: Date()});
     todoEl.current.value = '';
     durationEl.current.value = '';
+    dueDateEl.current.value = '';
   };
 
   const onInputKeyUp = (e: React.KeyboardEvent) => {

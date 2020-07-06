@@ -4,5 +4,6 @@ export default interface IContentItem {
   note: string;
   at: string;
   dueDate?: string;
+  genre?: string;
   duration?: number;
 }

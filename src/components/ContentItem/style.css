@@ -34,14 +34,16 @@
 }
 
 .card .duration,
-.card .due-date {
+.card .due-date,
+.card .genre {
   height: 22px;
   font-size: 11px;
   display: inline-block;
   margin-right: 10px;
 }
 
-.card .due-date span {
+.card .due-date span,
+.card .genre span {
   color: red;
 }
 

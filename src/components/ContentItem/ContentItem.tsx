@@ -52,6 +52,11 @@ function ContentItem(props: IProps) {
             Estimated: <span>{row.duration} minutes</span>
           </div>
         )}
+        {row.genre && (
+          <div className='genre'>
+            Genre: <span>{row.genre}</span>
+          </div>
+        )}
       </div>
       {props.toggle && (
         <button className='toggle' onClick={toggle}>
