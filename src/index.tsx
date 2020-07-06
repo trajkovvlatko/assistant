@@ -9,7 +9,6 @@ import Notes from './pages/Notes/Notes';
 import Todos from './pages/Todos/Todos';
 import ShoppingList from './pages/ShoppingList/ShoppingList';
 import WatchList from './pages/WatchList/WatchList';
-import Agenda from './pages/Agenda/Agenda';
 
 import Sidebar from './components/Sidebar/Sidebar';
 import WithUser from './components/WithUser';
@@ -39,7 +38,6 @@ const App: React.FC = () => {
                   <Route path='/todos' exact component={Todos} />
                   <Route path='/shopping-list' exact component={ShoppingList} />
                   <Route path='/watch-list' exact component={WatchList} />
-                  <Route path='/agenda' exact component={Agenda} />
                 </WithUser>
               </Switch>
             </div>

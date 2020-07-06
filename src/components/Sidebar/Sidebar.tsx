@@ -40,9 +40,6 @@ function Sidebar() {
           <Link to='/watch-list'>Watch list</Link>
         </li>
         <li>
-          <Link to='/agenda'>Agenda</Link>
-        </li>
-        <li>
           <div className='logout' onClick={logout}>
             Logout
           </div>
