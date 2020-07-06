@@ -1,17 +1,16 @@
 import React, {useContext, useRef, useState, useEffect} from 'react';
 import firebase from '../../firebase';
 import UserContext from '../../contexts/UserContext';
-import ContentItem from '../../components/ContentItem/ContentItem';
 import IContentItem from '../../interfaces/IContentItem';
 import {group} from '../../helpers/main';
 
 import './style.css';
+import ContentList from '../../components/ContentList/ContentList';
+import ContentGroupedList from '../../components/ContentGroupedList/ContentGroupedList';
 
 const db = firebase.database();
 const pendingRef = db.ref('todos/pending');
 const completedRef = db.ref('todos/completed');
-
-type GroupedContentItems = Record<string, IContentItem[]>;
 
 function Todos() {
   const {user} = useContext(UserContext);
@@ -107,8 +106,6 @@ function Todos() {
     }
   };
 
-  const grouped: GroupedContentItems = group(pending);
-
   return (
     <>
       <h1>Todos</h1>
@@ -119,33 +116,17 @@ function Todos() {
         </div>
         <br />
         <div className='pending-list'>
-          {Object.entries(grouped).map(([key, records]) => (
-            <div key={key}>
-              <div className='due-date-header'>
-                <b>{records[0].dueDate || 'No due date'}</b>
-              </div>
-              <br />
-              {records.map((row: IContentItem) => (
-                <ContentItem
-                  row={row}
-                  key={row.at}
-                  toggle={{cb: toggle, bucket: 'pending'}}
-                />
-              ))}
-            </div>
-          ))}
+          <ContentGroupedList
+            list={group(pending)}
+            toggle={{cb: toggle, bucket: 'pending'}}
+          />
         </div>
 
         <b>Completed</b>
-        <div className='completed-list'>
-          {completed.map((row: IContentItem) => (
-            <ContentItem
-              row={row}
-              key={row.at}
-              toggle={{cb: toggle, bucket: 'completed'}}
-            />
-          ))}
-        </div>
+        <ContentList
+          list={completed}
+          toggle={{cb: toggle, bucket: 'completed'}}
+        />
       </div>
 
       <div className='todos-form'>

@@ -1,9 +1,9 @@
 import React, {useContext, useRef, useState, useEffect} from 'react';
 import firebase from '../../firebase';
 import UserContext from '../../contexts/UserContext';
-import ContentItem from '../../components/ContentItem/ContentItem';
 import IContentItem from '../../interfaces/IContentItem';
 import './style.css';
+import ContentList from '../../components/ContentList/ContentList';
 
 const ref = firebase.database().ref('chat');
 
@@ -55,11 +55,7 @@ function Chat() {
     <>
       <h1>Chat</h1>
       <div className='messages-list' ref={listEl}>
-        {messages.map((row: IContentItem) => (
-          <div className={user === row.user ? 'mine' : 'others'} key={row.at}>
-            <ContentItem row={row} />
-          </div>
-        ))}
+        <ContentList list={messages} />
       </div>
 
       <div className='chat-form'>

@@ -1,10 +1,10 @@
 import React, {useContext, useRef, useState, useEffect} from 'react';
 import firebase from '../../firebase';
 import UserContext from '../../contexts/UserContext';
-import ContentItem from '../../components/ContentItem/ContentItem';
 import IContentItem from '../../interfaces/IContentItem';
 
 import './style.css';
+import ContentList from '../../components/ContentList/ContentList';
 
 const db = firebase.database();
 const pendingRef = db.ref('watch-list/pending');
@@ -96,30 +96,14 @@ function WatchList() {
       <h1>Watch list</h1>
 
       <div className='watch-lists'>
-        <div>
-          <b>Pending</b>
-        </div>
-        <br />
-        <div className='pending-list'>
-          {pending.map((row: IContentItem) => (
-            <ContentItem
-              row={row}
-              key={row.at}
-              toggle={{cb: toggle, bucket: 'pending'}}
-            />
-          ))}
-        </div>
+        <b>Pending</b>
+        <ContentList list={pending} toggle={{cb: toggle, bucket: 'pending'}} />
 
         <b>Completed</b>
-        <div className='completed-list'>
-          {completed.map((row: IContentItem) => (
-            <ContentItem
-              row={row}
-              key={row.at}
-              toggle={{cb: toggle, bucket: 'completed'}}
-            />
-          ))}
-        </div>
+        <ContentList
+          list={completed}
+          toggle={{cb: toggle, bucket: 'completed'}}
+        />
       </div>
 
       <div className='watch-list-form'>

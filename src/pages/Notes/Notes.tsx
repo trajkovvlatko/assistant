@@ -1,9 +1,9 @@
 import React, {useContext, useRef, useState, useEffect} from 'react';
 import firebase from '../../firebase';
 import UserContext from '../../contexts/UserContext';
-import ContentItem from '../../components/ContentItem/ContentItem';
 import IContentItem from '../../interfaces/IContentItem';
 import './style.css';
+import ContentList from '../../components/ContentList/ContentList';
 
 const ref = firebase.database().ref('notes');
 
@@ -50,9 +50,7 @@ function Notes() {
     <>
       <h1>Notes</h1>
       <div className='notes-list'>
-        {notes.map((row: IContentItem) => (
-          <ContentItem row={row} remove={remove} key={row.at} />
-        ))}
+        <ContentList list={notes} remove={remove} />
       </div>
 
       <div className='notes-form'>
