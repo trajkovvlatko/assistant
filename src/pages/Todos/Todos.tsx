@@ -3,11 +3,15 @@ import firebase from '../../firebase';
 import UserContext from '../../contexts/UserContext';
 import ContentItem from '../../components/ContentItem/ContentItem';
 import IContentItem from '../../interfaces/IContentItem';
+import {group} from '../../helpers/main';
+
 import './style.css';
 
 const db = firebase.database();
 const pendingRef = db.ref('todos/pending');
 const completedRef = db.ref('todos/completed');
+
+type GroupedContentItems = Record<string, IContentItem[]>;
 
 function Todos() {
   const {user} = useContext(UserContext);
@@ -24,7 +28,7 @@ function Todos() {
         pendingList.push({...doc.val(), key: doc.key});
       });
       if (pendingList.length !== pending.length) {
-        setPending(pendingList.reverse());
+        setPending(pendingList);
       }
     });
 
@@ -64,7 +68,9 @@ function Todos() {
     const note = todoEl.current.value.trim();
     if (note === '') return;
 
-    const duration = parseInt(durationEl.current.value);
+    const duration = durationEl.current.value
+      ? parseInt(durationEl.current.value)
+      : '';
     const dueDate = dueDateEl.current.value;
     pendingRef.push().set({user, note, duration, dueDate, at: Date()});
     todoEl.current.value = '';
@@ -100,19 +106,32 @@ function Todos() {
     }
   };
 
+  const grouped: GroupedContentItems = group(pending);
+
   return (
     <>
       <h1>Todos</h1>
 
       <div className='todos-lists'>
-        <b>Pending</b>
+        <div>
+          <b>Pending</b>
+        </div>
+        <br />
         <div className='pending-list'>
-          {pending.map((row: IContentItem) => (
-            <ContentItem
-              row={row}
-              key={row.at}
-              toggle={{cb: toggle, bucket: 'pending'}}
-            />
+          {Object.entries(grouped).map(([key, records]) => (
+            <div key={key}>
+              <div className='due-date-header'>
+                <b>{records[0].dueDate || 'No due date'}</b>
+              </div>
+              <br />
+              {records.map((row: IContentItem) => (
+                <ContentItem
+                  row={row}
+                  key={row.at}
+                  toggle={{cb: toggle, bucket: 'pending'}}
+                />
+              ))}
+            </div>
           ))}
         </div>
 
