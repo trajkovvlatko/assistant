@@ -45,6 +45,25 @@ function Sidebar() {
           </div>
         </li>
       </ul>
+      <hr />
+
+      <div className='chat-options'>
+        <h4>Chat options</h4>
+        <ul>
+          <li>
+            Add a note: <b>N:</b>
+          </li>
+          <li>
+            Add a todo: <b>T:</b>
+          </li>
+          <li>
+            Add to watch list: <b>W:</b>
+          </li>
+          <li>
+            Add to shopping list: <b>S:</b>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }

@@ -5,7 +5,17 @@ import IContentItem from '../../interfaces/IContentItem';
 import './style.css';
 import ContentList from '../../components/ContentList/ContentList';
 
+interface ITrigger {
+  [key: string]: string;
+}
+
 const ref = firebase.database().ref('chat');
+const triggers: ITrigger = {
+  N: 'notes',
+  T: 'todos/pending',
+  W: 'watch-list/pending',
+  S: 'shopping-list/pending',
+};
 
 function Chat() {
   const {user} = useContext(UserContext);
@@ -42,7 +52,21 @@ function Chat() {
     if (message === '') return;
 
     ref.push().set({user, note: message, at: Date()});
+
+    checkTriggers(message);
+
     inputEl.current.value = '';
+  };
+
+  const checkTriggers = (message: string) => {
+    Object.keys(triggers).forEach((trigger) => {
+      if (message.startsWith(`${trigger}:`)) {
+        const note = message.replace(`${trigger}:`, '').trim();
+        const obj = {user, note, at: Date()};
+        const bucket = triggers[trigger];
+        firebase.database().ref(bucket).push().set(obj);
+      }
+    });
   };
 
   const onInputKeyUp = (e: React.KeyboardEvent) => {
