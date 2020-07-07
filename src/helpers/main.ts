@@ -17,3 +17,13 @@ export function group(arr: IContentItem[]) {
       {}
     );
 }
+
+export function isValidUrl(val: string) {
+  try {
+    new URL(val);
+  } catch (_) {
+    return false;
+  }
+
+  return true;
+}

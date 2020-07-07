@@ -69,6 +69,13 @@ function ContentItem(props: IProps) {
           &times;
         </div>
       )}
+      {row.link && (
+        <div className='link'>
+          <a href={row.link} target='_blank' rel='noopener noreferrer'>
+            {row.link}
+          </a>
+        </div>
+      )}
     </div>
   );
 }

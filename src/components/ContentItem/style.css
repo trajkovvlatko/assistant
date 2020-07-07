@@ -52,3 +52,9 @@
   border: 0 none;
   cursor: pointer;
 }
+
+.card .link {
+  font-size: 11px;
+  margin-top: 11px;
+  margin-left: 63px;
+}
