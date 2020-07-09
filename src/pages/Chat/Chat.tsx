@@ -1,8 +1,8 @@
 import React, {useContext, useRef} from 'react';
-import firebase from '../../firebase';
-import UserContext from '../../contexts/UserContext';
+import firebase from 'firebase';
+import UserContext from 'contexts/UserContext';
 import './style.css';
-import List from '../../components/Chat/List';
+import List from 'components/Chat/List';
 
 interface ITrigger {
   [key: string]: string;

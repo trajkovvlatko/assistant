@@ -1,7 +1,5 @@
 import React from 'react';
-
-import IContentItem from '../../interfaces/IContentItem';
-
+import IContentItem from 'interfaces/IContentItem';
 import './style.css';
 
 interface IProps {

@@ -1,9 +1,7 @@
 import React, {useContext} from 'react';
-
-import IContentItem from '../../interfaces/IContentItem';
-import ContentItem from '../ContentItem/ContentItem';
-
-import UserContext from '../../contexts/UserContext';
+import IContentItem from 'interfaces/IContentItem';
+import ContentItem from 'components/Shared/ContentItem/ContentItem';
+import UserContext from 'contexts/UserContext';
 
 interface IProps {
   list: IContentItem[];

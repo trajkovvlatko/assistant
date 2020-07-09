@@ -1,4 +1,4 @@
-import IContentItem from '../interfaces/IContentItem';
+import IContentItem from 'interfaces/IContentItem';
 
 export function group(arr: IContentItem[]) {
   const grouped = arr.reduce((res: any, obj: IContentItem) => {

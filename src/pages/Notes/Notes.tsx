@@ -1,8 +1,8 @@
 import React, {useContext, useRef} from 'react';
-import firebase from '../../firebase';
-import UserContext from '../../contexts/UserContext';
+import firebase from 'firebase';
+import UserContext from 'contexts/UserContext';
 import './style.css';
-import List from '../../components/Notes/List';
+import List from 'components/Notes/List';
 
 const ref = firebase.database().ref('notes');
 

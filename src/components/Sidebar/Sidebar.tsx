@@ -1,9 +1,7 @@
 import React, {useContext} from 'react';
 import {Link, useHistory} from 'react-router-dom';
-
+import UserContext from 'contexts/UserContext';
 import './style.css';
-
-import UserContext from '../../contexts/UserContext';
 
 function Sidebar() {
   const {user, setUser} = useContext(UserContext);

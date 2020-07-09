@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import firebase from '../../firebase';
-import IContentItem from '../../interfaces/IContentItem';
-import ContentList from '../ContentList/ContentList';
-import ContentGroupedList from '../ContentGroupedList/ContentGroupedList';
-import {group} from '../../helpers/main';
+import firebase from 'firebase';
+import IContentItem from 'interfaces/IContentItem';
+import ContentList from 'components/Shared/ContentList/ContentList';
+import ContentGroupedList from 'components/Shared/ContentGroupedList/ContentGroupedList';
+import {group} from 'helpers/main';
 
 const db = firebase.database();
 const pendingRef = db.ref('todos/pending');

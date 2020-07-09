@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import firebase from '../../firebase';
-import IContentItem from '../../interfaces/IContentItem';
-import ContentList from '../ContentList/ContentList';
+import firebase from 'firebase';
+import IContentItem from 'interfaces/IContentItem';
+import ContentList from 'components/Shared/ContentList/ContentList';
 
 const db = firebase.database();
 const pendingRef = db.ref('watch-list/pending');

@@ -3,18 +3,15 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
-import Home from './pages/Home/Home';
-import Chat from './pages/Chat/Chat';
-import Notes from './pages/Notes/Notes';
-import Todos from './pages/Todos/Todos';
-import ShoppingList from './pages/ShoppingList/ShoppingList';
-import WatchList from './pages/WatchList/WatchList';
-
-import Sidebar from './components/Sidebar/Sidebar';
-import WithUser from './components/WithUser';
-
-import UserContext from './contexts/UserContext';
-
+import Home from 'pages/Home/Home';
+import Chat from 'pages/Chat/Chat';
+import Notes from 'pages/Notes/Notes';
+import Todos from 'pages/Todos/Todos';
+import ShoppingList from 'pages/ShoppingList/ShoppingList';
+import WatchList from 'pages/WatchList/WatchList';
+import Sidebar from 'components/Sidebar/Sidebar';
+import WithUser from 'components/WithUser';
+import UserContext from 'contexts/UserContext';
 import './index.css';
 
 const App: React.FC = () => {

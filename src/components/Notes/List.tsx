@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import firebase from '../../firebase';
-import ContentList from '../ContentList/ContentList';
-import IContentItem from '../../interfaces/IContentItem';
+import firebase from 'firebase';
+import ContentList from 'components/Shared/ContentList/ContentList';
+import IContentItem from 'interfaces/IContentItem';
 
 const ref = firebase.database().ref('notes');
 

@@ -1,7 +1,6 @@
 import React from 'react';
-
-import IContentItem from '../../interfaces/IContentItem';
-import ContentItem from '../ContentItem/ContentItem';
+import IContentItem from 'interfaces/IContentItem';
+import ContentItem from 'components/Shared/ContentItem/ContentItem';
 
 type GroupedContentItems = Record<string, IContentItem[]>;
 
