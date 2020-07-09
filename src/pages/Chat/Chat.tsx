@@ -55,7 +55,12 @@ function Chat() {
       <List />
 
       <div className='chat-form'>
-        <input type='text' ref={inputEl} onKeyUp={onInputKeyUp} />
+        <input
+          type='text'
+          ref={inputEl}
+          onKeyUp={onInputKeyUp}
+          placeholder='Message'
+        />
         <button className='save' onClick={send}>
           Send
         </button>

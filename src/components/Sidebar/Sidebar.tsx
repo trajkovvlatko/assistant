@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import UserContext from 'contexts/UserContext';
+import firebase from 'firebase';
 import './style.css';
 
 function Sidebar() {
@@ -9,10 +10,14 @@ function Sidebar() {
 
   if (!user) return <></>;
 
-  const logout = () => {
-    window.localStorage.removeItem('user');
-    setUser(null);
-    history.push('/');
+  const logout = async () => {
+    try {
+      await firebase.auth().signOut();
+      setUser(null);
+      history.push('/');
+    } catch (e) {
+      alert('Error during logout');
+    }
   };
 
   return (

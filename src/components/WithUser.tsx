@@ -1,13 +1,10 @@
-import React, {useContext} from 'react';
-import {useHistory} from 'react-router-dom';
-import UserContext from 'contexts/UserContext';
+import React from 'react';
+import firebase from 'firebase';
 
 function WithUser(props: {children: React.ReactNode}) {
-  const {user} = useContext(UserContext);
-  const history = useHistory();
+  const user = firebase.auth().currentUser;
 
   if (!user) {
-    history.push('/');
     return <></>;
   }
 

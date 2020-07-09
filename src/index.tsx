@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
+import firebase from 'firebase';
 
 import Home from 'pages/Home/Home';
 import Chat from 'pages/Chat/Chat';
@@ -10,13 +11,19 @@ import Todos from 'pages/Todos/Todos';
 import ShoppingList from 'pages/ShoppingList/ShoppingList';
 import WatchList from 'pages/WatchList/WatchList';
 import Sidebar from 'components/Sidebar/Sidebar';
-import WithUser from 'components/WithUser';
 import UserContext from 'contexts/UserContext';
+import WithUser from 'components/WithUser';
+import Register from 'components/Auth/Register';
 import './index.css';
 
 const App: React.FC = () => {
-  const lastUser = window.localStorage.getItem('user');
-  const [user, setUser] = useState<null | string>(lastUser);
+  const [user, setUser] = useState<null | string>('');
+
+  firebase.auth().onAuthStateChanged(function (u) {
+    if (u) {
+      setUser(u.displayName);
+    }
+  });
 
   return (
     <React.StrictMode>
@@ -29,6 +36,7 @@ const App: React.FC = () => {
             <div className='main'>
               <Switch>
                 <Route path='/' exact component={Home} />
+                <Route path='/register' exact component={Register} />
                 <WithUser>
                   <Route path='/chat' exact component={Chat} />
                   <Route path='/notes' exact component={Notes} />
