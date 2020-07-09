@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import firebase from '../../firebase';
 import IContentItem from '../../interfaces/IContentItem';
-import ContentList from '../../components/ContentList/ContentList';
-import ContentGroupedList from '../../components/ContentGroupedList/ContentGroupedList';
+import ContentList from '../ContentList/ContentList';
+import ContentGroupedList from '../ContentGroupedList/ContentGroupedList';
 import {group} from '../../helpers/main';
 
 const db = firebase.database();
