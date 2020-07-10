@@ -1,23 +1,8 @@
-.users {
-  width: 500px;
-  text-align: center;
+.home {
+  width: 30%;
+  height: 100vh;
   margin: 0 auto;
-}
-
-.users div {
-  display: inline-block;
-  width: 200px;
-  cursor: pointer;
-}
-
-.users div:last-child {
-  padding-left: 15px;
-}
-
-.last-user {
-  width: 200px;
-  cursor: pointer;
-  margin: 0 auto;
-  margin-bottom: 100px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

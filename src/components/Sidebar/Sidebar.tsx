@@ -12,12 +12,14 @@ function Sidebar() {
   if (!user) return <></>;
 
   const logout = async () => {
-    try {
-      await firebase.auth().signOut();
-      setUser(null);
-      history.push('/');
-    } catch (e) {
-      alert('Error during logout');
+    if (window.confirm('Logout?')) {
+      try {
+        await firebase.auth().signOut();
+        setUser(null);
+        history.push('/');
+      } catch (e) {
+        alert('Error during logout');
+      }
     }
   };
 

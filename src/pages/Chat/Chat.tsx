@@ -18,6 +18,7 @@ const triggers: ITrigger = {
 function Chat() {
   const {user} = useContext(UserContext);
   const inputEl = useRef<HTMLInputElement>(null);
+  const scroller = useRef<HTMLInputElement>(null);
 
   const send = () => {
     if (!inputEl || !inputEl.current) return;
@@ -49,10 +50,10 @@ function Chat() {
 
   return (
     <div className='chat'>
-      <div className='main-wrapper-outer'>
+      <div className='main-wrapper-outer' ref={scroller}>
         <div className='main-wrapper-inner'>
           <h1>Chat</h1>
-          <List />
+          <List scroller={scroller} />
         </div>
       </div>
 

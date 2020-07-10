@@ -5,6 +5,11 @@
   width: 150px;
   padding: 40px;
   position: relative;
+  display: none;
+
+  &.active {
+    display: block;
+  }
 
   .main-menu {
     li {

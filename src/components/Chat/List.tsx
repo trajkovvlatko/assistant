@@ -1,13 +1,13 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import firebase from '../../firebase';
 import ContentList from 'components/Shared/ContentList/ContentList';
 import IContentItem from 'interfaces/IContentItem';
 
 const ref = firebase.database().ref('chat');
 
-function List() {
+function List(props: any) {
   const [messages, setMessages] = useState<IContentItem[]>([]);
-  const listEl = useRef<HTMLInputElement>(null);
+  const scroller = props.scroller;
 
   useEffect(() => {
     const unsubscribe = ref
@@ -23,8 +23,8 @@ function List() {
         if (oldKeys !== newKeys) {
           setMessages(messagesList);
         }
-        if (listEl && listEl.current) {
-          listEl.current.scrollTop = listEl.current.scrollHeight;
+        if (scroller && scroller.current) {
+          scroller.current.scrollTop = scroller.current.scrollHeight;
         }
       });
 
@@ -32,7 +32,7 @@ function List() {
   });
 
   return (
-    <div className='list' ref={listEl}>
+    <div className='list'>
       <ContentList list={messages} />
     </div>
   );

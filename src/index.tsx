@@ -30,7 +30,7 @@ const App: React.FC = () => {
       <BrowserRouter>
         <UserContext.Provider value={{user, setUser}}>
           <div className='container'>
-            <div className='sidebar'>
+            <div className={`sidebar ${user ? 'active' : ''}`}>
               <Sidebar />
             </div>
             <div className='main'>

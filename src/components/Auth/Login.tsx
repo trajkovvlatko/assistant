@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import firebase from 'firebase';
 import {useHistory} from 'react-router-dom';
 import UserContext from 'contexts/UserContext';
+import './style.scss';
 
 const Login = () => {
   const [email, setEmail] = useState<string>('');
@@ -41,13 +42,12 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className='auth'>
       <h1>Login</h1>
       <div>
-        {error && <div>{error}</div>}
+        {error && <div className='error'>{error}</div>}
 
         <form>
-          <label>Email:</label>
           <input
             type='email'
             name='email'
@@ -55,7 +55,6 @@ const Login = () => {
             placeholder='Email'
             onChange={onChange}
           />
-          <label>Password:</label>
           <input
             type='password'
             name='password'
@@ -63,14 +62,13 @@ const Login = () => {
             placeholder='Password'
             onChange={onChange}
           />
+          {!process.env.REACT_APP_DISABLE_REGISTRATIONS && (
+            <span>
+              <Link to='/register'>Register</Link>
+            </span>
+          )}
           <button onClick={login}>Login</button>
         </form>
-
-        {!process.env.REACT_APP_DISABLE_REGISTRATIONS && (
-          <p>
-            <Link to='/register'>Register</Link>
-          </p>
-        )}
       </div>
     </div>
   );

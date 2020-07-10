@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import firebase from 'firebase';
 import {useHistory} from 'react-router-dom';
+import './style.scss';
 
 const Register = () => {
   const [name, setName] = useState<string>('');
@@ -18,6 +19,11 @@ const Register = () => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
+    if (!email || !password || !name) {
+      setError('All fields are mandatory.');
+      return;
+    }
+
     try {
       const userCredentials = await firebase
         .auth()
@@ -44,41 +50,40 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h1>Register</h1>
-      <div>
-        {error && <div>{error}</div>}
+    <div className='home'>
+      <div className='auth'>
+        <h1>Register</h1>
+        <div>
+          {error && <div className='error'>{error}</div>}
 
-        <form>
-          <label>Name:</label>
-          <input
-            type='text'
-            name='name'
-            value={name}
-            placeholder='Name'
-            onChange={onChange}
-          />
-          <label>Email:</label>
-          <input
-            type='email'
-            name='email'
-            value={email}
-            placeholder='Email'
-            onChange={onChange}
-          />
-          <label>Password:</label>
-          <input
-            type='password'
-            name='password'
-            value={password}
-            placeholder='Password'
-            onChange={onChange}
-          />
-          <button onClick={register}>Register</button>
-        </form>
-        <p>
-          <Link to='/'>Login</Link>
-        </p>
+          <form>
+            <input
+              type='text'
+              name='name'
+              value={name}
+              placeholder='Name'
+              onChange={onChange}
+            />
+            <input
+              type='email'
+              name='email'
+              value={email}
+              placeholder='Email'
+              onChange={onChange}
+            />
+            <input
+              type='password'
+              name='password'
+              value={password}
+              placeholder='Password'
+              onChange={onChange}
+            />
+            <span>
+              <Link to='/'>Login</Link>
+            </span>
+            <button onClick={register}>Register</button>
+          </form>
+        </div>
       </div>
     </div>
   );
