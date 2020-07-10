@@ -35,29 +35,36 @@ function ShoppingList() {
   };
 
   return (
-    <>
-      <h1>Shopping list</h1>
-
-      <List />
-
-      <div className='shopping-list-form'>
-        <input
-          type='text'
-          ref={inputEl}
-          onKeyUp={onInputKeyUp}
-          placeholder='Add an item'
-        />
-        <input
-          type='url'
-          ref={linkEl}
-          onKeyUp={onInputKeyUp}
-          placeholder='Add a link'
-        />
-        <button className='save' onClick={save}>
-          Add
-        </button>
+    <div className='shopping-list'>
+      <div className='main-wrapper-outer'>
+        <div className='main-wrapper-inner'>
+          <h1>Shopping list</h1>
+          <List />
+        </div>
       </div>
-    </>
+
+      <div className='form-wrapper-outer shopping-list-form'>
+        <div className='form-wrapper-inner'>
+          <input
+            type='text'
+            ref={inputEl}
+            onKeyUp={onInputKeyUp}
+            placeholder='Add an item'
+            className='item'
+          />
+          <input
+            type='url'
+            ref={linkEl}
+            onKeyUp={onInputKeyUp}
+            placeholder='Add a link'
+            className='link'
+          />
+          <button className='save' onClick={save}>
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 

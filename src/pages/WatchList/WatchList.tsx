@@ -30,39 +30,49 @@ function WatchList() {
     save();
   };
 
+  const onGenreChange = (e: React.FormEvent<HTMLSelectElement>) => {
+    let val: string | null = e.currentTarget.value;
+    if (val === '0') {
+      val = null;
+    }
+    setSelectedGenre(val);
+  };
+
   return (
-    <>
-      <h1>Watch list</h1>
-
-      <List />
-
-      <div className='watch-list-form'>
-        <input
-          type='text'
-          className='film'
-          ref={filmEl}
-          onKeyUp={onInputKeyUp}
-          placeholder='Add a film'
-        />
-        <select
-          className='genre'
-          onChange={(e) => setSelectedGenre(e.target.value)}
-        >
-          <option>-- Select a genre --</option>
-          <option>Comedy</option>
-          <option>Animation</option>
-          <option>Fantasy</option>
-          <option>Sci-fi</option>
-          <option>Adventure</option>
-          <option>Action</option>
-          <option>Thriller</option>
-          <option>Drama</option>
-        </select>
-        <button className='save' onClick={save}>
-          Add
-        </button>
+    <div className='watch-list'>
+      <div className='main-wrapper-outer'>
+        <div className='main-wrapper-inner'>
+          <h1>Watch list</h1>
+          <List />
+        </div>
       </div>
-    </>
+
+      <div className='form-wrapper-outer watch-list-form'>
+        <div className='form-wrapper-inner'>
+          <input
+            type='text'
+            className='film'
+            ref={filmEl}
+            onKeyUp={onInputKeyUp}
+            placeholder='Add a film'
+          />
+          <select className='genre' onChange={onGenreChange}>
+            <option value='0'>-- Select a genre --</option>
+            <option value='Comedy'>Comedy</option>
+            <option value='Animation'>Animation</option>
+            <option value='Fantasy'>Fantasy</option>
+            <option value='Sci-fi'>Sci-fi</option>
+            <option value='Adventure'>Adventure</option>
+            <option value='Action'>Action</option>
+            <option value='Thriller'>Thriller</option>
+            <option value='Drama'>Drama</option>
+          </select>
+          <button className='save' onClick={save}>
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 

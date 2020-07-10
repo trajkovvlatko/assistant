@@ -67,11 +67,11 @@ function List() {
   };
 
   return (
-    <div className='watch-lists'>
-      <b>Pending</b>
+    <div className='list'>
+      <h2>Pending</h2>
       <ContentList list={pending} toggle={{cb: toggle, bucket: 'pending'}} />
 
-      <b>Completed</b>
+      <h2>Completed</h2>
       <ContentList
         list={completed}
         toggle={{cb: toggle, bucket: 'completed'}}
