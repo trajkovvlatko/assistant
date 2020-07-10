@@ -22,6 +22,8 @@ code {
 h1, h2, h3, h4, h5, h6 {
   padding: 0;
   margin: 0;
+  font-weight: normal;
+  color: $primary-color;
 }
 
 ul {
@@ -79,6 +81,7 @@ hr {
 
   .form-wrapper-outer {
     width: 100%;
+    height: 70px;
     background-color: $active-color;
     box-sizing: border-box;
     position: absolute;
@@ -90,6 +93,8 @@ hr {
       border: 1px solid $button-border-color;
       padding-left: 15px;
       box-sizing: border-box;
+      margin-right: 15px;
+      width: calc(100% - 125px);
     }
 
     button {
@@ -104,7 +109,7 @@ hr {
   }
 
   .main-wrapper-outer {
-    max-height: calc(100vh - 130px);
+    max-height: calc(100vh - 80px);
     width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
@@ -120,9 +125,22 @@ hr {
       color: $primary-color;
     }
 
-    .messages-list {
+    .list {
       margin-top: 30px;
       overflow: hidden;
+
+      h2 {
+        margin-bottom: 30px;
+      }
+
+      .pending-list {
+        margin-bottom: 30px;
+      }
+
+      .due-date-header {
+        text-align: center;
+        color: $primary-color;
+      }
     }
   }
 }

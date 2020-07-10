@@ -23,14 +23,12 @@
   .remove {
     position: absolute;
     top: 2px;
-    right: 2px;
-    width: 15px;
-    height: 15px;
+    right: 8px;
     cursor: pointer;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    line-height: 15px;
+    line-height: 30px;
+    font-size: 30px;
     text-align: center;
+    color: $button-border-color;
   }
 
   .duration,

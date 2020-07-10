@@ -1,7 +1,6 @@
 import React, {useContext, useRef} from 'react';
 import firebase from 'firebase';
 import UserContext from 'contexts/UserContext';
-import './style.scss';
 import List from 'components/Chat/List';
 
 interface ITrigger {

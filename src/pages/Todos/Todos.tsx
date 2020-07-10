@@ -46,41 +46,46 @@ function Todos() {
   };
 
   return (
-    <>
-      <h1>Todos</h1>
-
-      <List />
-
-      <div className='todos-form'>
-        <input
-          type='text'
-          className='todo'
-          ref={todoEl}
-          onKeyUp={onInputKeyUp}
-          placeholder='Add a todo'
-        />
-        <input
-          type='date'
-          className='due-date'
-          ref={dueDateEl}
-          onKeyUp={onInputKeyUp}
-          placeholder='Due date'
-        />
-        <input
-          type='number'
-          min='0'
-          step='1'
-          name='test'
-          className='duration'
-          ref={durationEl}
-          onKeyUp={onInputKeyUp}
-          placeholder='Estimate (min)'
-        />
-        <button className='save' onClick={save}>
-          Add
-        </button>
+    <div className='todos'>
+      <div className='main-wrapper-outer'>
+        <div className='main-wrapper-inner'>
+          <h1>Todos</h1>
+          <List />
+        </div>
       </div>
-    </>
+
+      <div className='form-wrapper-outer todos-form'>
+        <div className='form-wrapper-inner'>
+          <input
+            type='text'
+            className='todo'
+            ref={todoEl}
+            onKeyUp={onInputKeyUp}
+            placeholder='Add a todo'
+          />
+          <input
+            type='date'
+            className='due-date'
+            ref={dueDateEl}
+            onKeyUp={onInputKeyUp}
+            placeholder='Due date'
+          />
+          <input
+            type='number'
+            min='0'
+            step='1'
+            name='test'
+            className='duration'
+            ref={durationEl}
+            onKeyUp={onInputKeyUp}
+            placeholder='Estimate (min)'
+          />
+          <button className='save' onClick={save}>
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 

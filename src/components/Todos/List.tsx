@@ -69,11 +69,9 @@ function List() {
   };
 
   return (
-    <div className='todos-lists'>
-      <div>
-        <b>Pending</b>
-      </div>
-      <br />
+    <div className='list'>
+      <h2>Pending</h2>
+
       <div className='pending-list'>
         <ContentGroupedList
           list={group(pending)}
@@ -81,7 +79,7 @@ function List() {
         />
       </div>
 
-      <b>Completed</b>
+      <h2>Completed</h2>
       <ContentList
         list={completed}
         toggle={{cb: toggle, bucket: 'completed'}}

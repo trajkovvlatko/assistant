@@ -1,7 +1,6 @@
 import React, {useContext, useRef} from 'react';
 import firebase from 'firebase';
 import UserContext from 'contexts/UserContext';
-import './style.scss';
 import List from 'components/Notes/List';
 
 const ref = firebase.database().ref('notes');
@@ -27,18 +26,28 @@ function Notes() {
   };
 
   return (
-    <>
-      <h1>Notes</h1>
-
-      <List />
-
-      <div className='notes-form'>
-        <input type='text' ref={inputEl} onKeyUp={onInputKeyUp} />
-        <button className='save' onClick={save}>
-          Save
-        </button>
+    <div className='notes'>
+      <div className='main-wrapper-outer'>
+        <div className='main-wrapper-inner'>
+          <h1>Notes</h1>
+          <List />
+        </div>
       </div>
-    </>
+
+      <div className='form-wrapper-outer notes-form'>
+        <div className='form-wrapper-inner'>
+          <input
+            type='text'
+            ref={inputEl}
+            onKeyUp={onInputKeyUp}
+            placeholder='Add a note'
+          />
+          <button className='save' onClick={save}>
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 

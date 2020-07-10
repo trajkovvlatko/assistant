@@ -32,7 +32,7 @@ function List() {
   });
 
   return (
-    <div className='messages-list' ref={listEl}>
+    <div className='list' ref={listEl}>
       <ContentList list={messages} />
     </div>
   );

@@ -1,32 +1,19 @@
-.todos-lists {
-  max-height: calc(100vh - 130px);
-  overflow: auto;
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
+.main {
+  .todos {
+    .form-wrapper-outer {
+      &.todos-form {
+        .todo {
+          width: 45%;
+        }
 
-.todos-form {
-  position: absolute;
-  bottom: 15px;
-  width: calc(100% - 30px);
-}
+        .due-date {
+          width: 20%;
+        }
 
-.todos-form .todo {
-  width: calc(100% - 460px);
-  margin-right: 15px;
-}
-
-.todos-form .duration,
-.todos-form .due-date {
-  margin-right: 15px;
-  height: 30px;
-  width: 130px;
-}
-
-.todos-form button {
-  width: 100px;
-}
-
-.due-date-header {
-  text-align: center;
+        .duration {
+          width: 20%;
+        }
+      }
+    }
+  }
 }

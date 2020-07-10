@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import UserContext from 'contexts/UserContext';
 import firebase from 'firebase';
@@ -7,6 +7,7 @@ import './style.scss';
 function Sidebar() {
   const {user, setUser} = useContext(UserContext);
   const history = useHistory();
+  const [active, setActive] = useState<string>(history.location.pathname);
 
   if (!user) return <></>;
 
@@ -20,8 +21,8 @@ function Sidebar() {
     }
   };
 
-  const checkActive = (pathname: string): string => {
-    if (history.location.pathname === pathname) {
+  const checkActive = (pathName: string): string => {
+    if (active === pathName) {
       return 'active';
     } else {
       return '';
@@ -32,27 +33,47 @@ function Sidebar() {
     <>
       <ul className='main-menu'>
         <li>
-          <Link to='/chat' className={checkActive('/chat')}>
+          <Link
+            to='/chat'
+            className={checkActive('/chat')}
+            onClick={() => setActive('/chat')}
+          >
             Chat
           </Link>
         </li>
         <li>
-          <Link to='/notes' className={checkActive('/notes')}>
+          <Link
+            to='/notes'
+            className={checkActive('/notes')}
+            onClick={() => setActive('/notes')}
+          >
             Notes
           </Link>
         </li>
         <li>
-          <Link to='/todos' className={checkActive('/todos')}>
+          <Link
+            to='/todos'
+            className={checkActive('/todos')}
+            onClick={() => setActive('/todos')}
+          >
             Todos
           </Link>
         </li>
         <li>
-          <Link to='/shopping-list' className={checkActive('/shopping-list')}>
+          <Link
+            to='/shopping-list'
+            className={checkActive('/shopping-list')}
+            onClick={() => setActive('/shopping-list')}
+          >
             Shopping list
           </Link>
         </li>
         <li>
-          <Link to='/watch-list' className={checkActive('/watch-list')}>
+          <Link
+            to='/watch-list'
+            className={checkActive('/watch-list')}
+            onClick={() => setActive('/watch-list')}
+          >
             Watch list
           </Link>
         </li>

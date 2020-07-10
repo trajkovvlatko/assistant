@@ -27,7 +27,7 @@ function List() {
   });
 
   return (
-    <div className='notes-list'>
+    <div className='list'>
       <ContentList list={notes} remove={remove} />
     </div>
   );
