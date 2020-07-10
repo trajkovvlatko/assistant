@@ -1,60 +1,63 @@
+@import '../../../variables.scss';
+
 .card {
   width: 100%;
-  background-color: white;
+  background-color: $active-color;
   border-radius: 3px;
   margin-bottom: 15px;
   padding: 15px;
   position: relative;
   box-sizing: border-box;
-}
+  box-shadow: $box-shadow;
 
-.card.completed .content {
-  text-decoration: line-through;
-}
+  &.completed {
+    .content {
+      text-decoration: line-through;
+    }
+  }
 
-.card .remove {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  width: 15px;
-  height: 15px;
-  cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  line-height: 15px;
-  text-align: center;
-}
+  .user {
+    font-weight: 500;
+  }
 
-.card .date-time {
-  height: 22px;
-  width: 100px;
-  font-size: 11px;
-  color: #888;
-  display: inline-block;
-}
+  .remove {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    line-height: 15px;
+    text-align: center;
+  }
 
-.card .duration,
-.card .due-date,
-.card .genre {
-  height: 22px;
-  font-size: 11px;
-  display: inline-block;
-  margin-right: 10px;
-}
+  .duration,
+  .due-date,
+  .date-time,
+  .genre {
+    margin-bottom: 10px;
+    font-size: $small-font-size;
+    display: inline-block;
+    margin-right: 25px;
+    color: $note-color;
+  }
 
-.card .due-date span,
-.card .genre span {
-  color: red;
-}
+  .due-date span,
+  .genre span {
+    color: red;
+  }
 
-.card .toggle {
-  background-color: transparent;
-  border: 0 none;
-  cursor: pointer;
-}
+  .toggle {
+    background-color: transparent;
+    border: 0 none;
+    cursor: pointer;
+  }
 
-.card .link {
-  font-size: 11px;
-  margin-top: 11px;
-  margin-left: 63px;
+  .link {
+    font-size: 11px;
+    margin-top: 11px;
+    margin-left: 63px;
+  }
 }

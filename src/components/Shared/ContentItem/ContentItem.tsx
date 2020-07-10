@@ -37,9 +37,7 @@ function ContentItem(props: IProps) {
   return (
     <div className={`card note ${className}`}>
       <div>
-        <div className='date-time'>
-          <i>{at}</i>
-        </div>
+        <div className='date-time'>{at}</div>
         {row.dueDate && (
           <div className='due-date'>
             Due date: <span>{row.dueDate}</span>
@@ -61,7 +59,8 @@ function ContentItem(props: IProps) {
           Toggle
         </button>
       )}
-      <b>{row.user}</b>: <span className='content'>{row.note}</span>
+      <span className='user'>{row.user}</span>:{' '}
+      <span className='content'>{row.note}</span>
       {props.remove && (
         <div className='remove' onClick={remove}>
           &times;
