@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {Link} from 'react-router-dom';
 import firebase from 'firebase';
 import {useHistory} from 'react-router-dom';
+import UserContext from 'contexts/UserContext';
 import './style.scss';
 
 const Register = () => {
@@ -10,8 +11,10 @@ const Register = () => {
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<null | string>(null);
   const history = useHistory();
+  const {user} = useContext(UserContext);
 
-  if (process.env.REACT_APP_DISABLE_REGISTRATIONS) {
+  if (user || process.env.REACT_APP_DISABLE_REGISTRATIONS) {
+    history.push('/chat');
     return <></>;
   }
 

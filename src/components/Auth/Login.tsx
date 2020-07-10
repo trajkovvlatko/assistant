@@ -10,8 +10,13 @@ const Login = () => {
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<null | string>(null);
 
-  const {setUser} = useContext(UserContext);
+  const {user, setUser} = useContext(UserContext);
   const history = useHistory();
+
+  if (user) {
+    history.push('/chat');
+    return <></>;
+  }
 
   const login = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -42,33 +47,35 @@ const Login = () => {
   };
 
   return (
-    <div className='auth'>
-      <h1>Login</h1>
-      <div>
-        {error && <div className='error'>{error}</div>}
+    <div className='home'>
+      <div className='auth'>
+        <h1>Login</h1>
+        <div>
+          {error && <div className='error'>{error}</div>}
 
-        <form>
-          <input
-            type='email'
-            name='email'
-            value={email}
-            placeholder='Email'
-            onChange={onChange}
-          />
-          <input
-            type='password'
-            name='password'
-            value={password}
-            placeholder='Password'
-            onChange={onChange}
-          />
-          {!process.env.REACT_APP_DISABLE_REGISTRATIONS && (
-            <span>
-              <Link to='/register'>Register</Link>
-            </span>
-          )}
-          <button onClick={login}>Login</button>
-        </form>
+          <form>
+            <input
+              type='email'
+              name='email'
+              value={email}
+              placeholder='Email'
+              onChange={onChange}
+            />
+            <input
+              type='password'
+              name='password'
+              value={password}
+              placeholder='Password'
+              onChange={onChange}
+            />
+            {!process.env.REACT_APP_DISABLE_REGISTRATIONS && (
+              <span>
+                <Link to='/register'>Register</Link>
+              </span>
+            )}
+            <button onClick={login}>Login</button>
+          </form>
+        </div>
       </div>
     </div>
   );

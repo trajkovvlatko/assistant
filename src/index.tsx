@@ -4,7 +4,6 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import firebase from 'firebase';
 
-import Home from 'pages/Home/Home';
 import Chat from 'pages/Chat/Chat';
 import Notes from 'pages/Notes/Notes';
 import Todos from 'pages/Todos/Todos';
@@ -13,6 +12,7 @@ import WatchList from 'pages/WatchList/WatchList';
 import Sidebar from 'components/Sidebar/Sidebar';
 import UserContext from 'contexts/UserContext';
 import WithUser from 'components/WithUser';
+import Login from 'components/Auth/Login';
 import Register from 'components/Auth/Register';
 import './index.scss';
 
@@ -35,7 +35,7 @@ const App: React.FC = () => {
             </div>
             <div className='main'>
               <Switch>
-                <Route path='/' exact component={Home} />
+                <Route path='/' exact component={Login} />
                 <Route path='/register' exact component={Register} />
                 <WithUser>
                   <Route path='/chat' exact component={Chat} />
