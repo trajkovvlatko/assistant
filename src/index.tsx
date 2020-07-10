@@ -30,9 +30,7 @@ const App: React.FC = () => {
       <BrowserRouter>
         <UserContext.Provider value={{user, setUser}}>
           <div className='container'>
-            <div className={`sidebar ${user ? 'active' : ''}`}>
-              <Sidebar />
-            </div>
+            <Sidebar />
             <div className='main'>
               <Switch>
                 <Route path='/' exact component={Login} />

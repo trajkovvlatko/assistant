@@ -8,6 +8,7 @@ function Sidebar() {
   const {user, setUser} = useContext(UserContext);
   const history = useHistory();
   const defaultPathName = history.location.pathname;
+  const [visible, setVisible] = useState<boolean>(false);
   const [active, setActive] = useState<string>(
     defaultPathName !== '/' ? defaultPathName : '/chat'
   );
@@ -34,8 +35,19 @@ function Sidebar() {
     }
   };
 
+  const toggleMobileSidebar = () => setVisible(!visible);
+
   return (
-    <>
+    <div
+      className={`sidebar ${user ? 'with-user' : ''} ${
+        visible ? 'visible' : ''
+      }`}
+    >
+      <div className='header'>
+        <span className='hamburger' onClick={toggleMobileSidebar}>
+          &#9776;
+        </span>
+      </div>
       <ul className='main-menu'>
         <li>
           <Link
@@ -113,7 +125,7 @@ function Sidebar() {
           </li>
         </ul>
       </div>
-    </>
+    </div>
   );
 }
 

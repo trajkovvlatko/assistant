@@ -1,5 +1,19 @@
 @import '../../variables.scss';
 
+.header {
+  display: none;
+
+  @media screen and (max-width: $breakpoint-small) {
+    display: block;
+    width: 100vw;
+    height: 40px;
+    background-color: $primary-color;
+    position: absolute;
+    top: 0;
+    z-index: 100;
+  }
+}
+
 .sidebar {
   background-color: $primary-color;
   width: 150px;
@@ -7,7 +21,7 @@
   position: relative;
   display: none;
 
-  &.active {
+  &.with-user {
     display: block;
   }
 
@@ -47,6 +61,47 @@
         color: $secondary-color;
         font-weight: 500;
       }
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-small) {
+    width: 0px;
+    padding: 0px;
+
+    &.visible {
+      width: 180px;
+      position: absolute;
+      top: 0px;
+      bottom: 0;
+      z-index: 50;
+
+      .main-menu {
+        padding: 15px;
+        padding-top: 40px;
+      }
+
+      .chat-options {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      hr {
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+
+      .bottom {
+        padding: 15px;
+        bottom: 0;
+      }
+    }
+
+    .hamburger {
+      padding-left: 15px;
+      padding-right: 15px;
+      line-height: 40px;
+      color: $secondary-color;
+      cursor: pointer;
     }
   }
 }
