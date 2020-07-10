@@ -49,23 +49,28 @@ function Chat() {
   };
 
   return (
-    <>
-      <h1>Chat</h1>
-
-      <List />
-
-      <div className='chat-form'>
-        <input
-          type='text'
-          ref={inputEl}
-          onKeyUp={onInputKeyUp}
-          placeholder='Message'
-        />
-        <button className='save' onClick={send}>
-          Send
-        </button>
+    <div className='chat'>
+      <div className='main-wrapper-outer'>
+        <div className='main-wrapper-inner'>
+          <h1>Chat</h1>
+          <List />
+        </div>
       </div>
-    </>
+
+      <div className='form-wrapper-outer chat-form'>
+        <div className='form-wrapper-inner'>
+          <input
+            type='text'
+            ref={inputEl}
+            onKeyUp={onInputKeyUp}
+            placeholder='Message'
+          />
+          <button className='save' onClick={send}>
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 

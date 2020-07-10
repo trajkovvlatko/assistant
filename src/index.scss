@@ -11,6 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 
 code {
@@ -72,18 +73,64 @@ hr {
 }
 
 .main {
-  background-color: #aaa;
+  background-color: $background-color;
   flex: 1;
-  padding: 15px;
   position: relative;
-}
 
-@media screen and (max-width: 540px) {
-  .container {
-    flex-direction: column;
+  .form-wrapper-outer {
+    width: 100%;
+    background-color: $active-color;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    padding-top: 14px;
+
+    input {
+      height: 40px;
+      border: 1px solid $button-border-color;
+      padding-left: 15px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100px;
+    }
   }
 
-  .sidebar {
+  .form-wrapper-inner {
+    width: 60%;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .main-wrapper-outer {
+    max-height: calc(100vh - 130px);
     width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .main-wrapper-inner {
+    width: 60%;
+    margin: 0 auto;
+    overflow: hidden;
+    padding-top: 40px;
+
+    h1 {
+      color: $primary-color;
+    }
+
+    .messages-list {
+      margin-top: 30px;
+      overflow: hidden;
+
+      .mine .card {
+        background-color: #ddd;
+      }
+
+      .others .card {
+        background-color: #ffe0e0;
+      }
+    }
   }
 }

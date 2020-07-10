@@ -1,28 +1,16 @@
-.chat-form {
-  position: absolute;
-  bottom: 15px;
-  width: calc(100% - 30px);
-}
+.main {
+  .chat {
+    .main-wrapper-outer {
+      max-height: calc(100vh - 80px);
+    }
 
-.chat-form input {
-  width: calc(100% - 133px);
-  margin-right: 15px;
-}
+    .form-wrapper-outer {
+      height: 70px;
 
-.chat-form button {
-  width: 100px;
-}
-
-.messages-list {
-  max-height: calc(100vh - 130px);
-  overflow: auto;
-  margin-top: 15px;
-}
-
-.messages-list .mine .card {
-  background-color: #ddd;
-}
-
-.messages-list .others .card {
-  background-color: #ffe0e0;
+      input {
+        width: calc(100% - 125px);
+        margin-right: 15px;
+      }
+    }
+  }
 }
