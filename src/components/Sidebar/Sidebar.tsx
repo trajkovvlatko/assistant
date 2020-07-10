@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import UserContext from 'contexts/UserContext';
 import firebase from 'firebase';
-import './style.css';
+import './style.scss';
 
 function Sidebar() {
   const {user, setUser} = useContext(UserContext);
@@ -20,32 +20,41 @@ function Sidebar() {
     }
   };
 
+  const checkActive = (pathname: string): string => {
+    if (history.location.pathname === pathname) {
+      return 'active';
+    } else {
+      return '';
+    }
+  };
+
   return (
-    <div>
-      <h2>{user}</h2>
-
-      <br />
-
-      <ul>
+    <>
+      <ul className='main-menu'>
         <li>
-          <Link to='/chat'>Chat</Link>
+          <Link to='/chat' className={checkActive('/chat')}>
+            Chat
+          </Link>
         </li>
         <li>
-          <Link to='/notes'>Notes</Link>
+          <Link to='/notes' className={checkActive('/notes')}>
+            Notes
+          </Link>
         </li>
         <li>
-          <Link to='/todos'>Todos</Link>
+          <Link to='/todos' className={checkActive('/todos')}>
+            Todos
+          </Link>
         </li>
         <li>
-          <Link to='/shopping-list'>Shopping list</Link>
+          <Link to='/shopping-list' className={checkActive('/shopping-list')}>
+            Shopping list
+          </Link>
         </li>
         <li>
-          <Link to='/watch-list'>Watch list</Link>
-        </li>
-        <li>
-          <div className='logout' onClick={logout}>
-            Logout
-          </div>
+          <Link to='/watch-list' className={checkActive('/watch-list')}>
+            Watch list
+          </Link>
         </li>
       </ul>
       <hr />
@@ -67,7 +76,18 @@ function Sidebar() {
           </li>
         </ul>
       </div>
-    </div>
+
+      <div className='bottom'>
+        <ul>
+          <li>
+            <h2>{user}</h2>
+          </li>
+          <li className='logout' onClick={logout}>
+            Logout
+          </li>
+        </ul>
+      </div>
+    </>
   );
 }
 

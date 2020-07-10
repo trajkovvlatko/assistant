@@ -2,7 +2,7 @@ import React, {useContext, useRef, useState} from 'react';
 import firebase from 'firebase';
 import UserContext from 'contexts/UserContext';
 import List from 'components/WatchList/List';
-import './style.css';
+import './style.scss';
 
 const db = firebase.database();
 const pendingRef = db.ref('watch-list/pending');

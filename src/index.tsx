@@ -14,7 +14,7 @@ import Sidebar from 'components/Sidebar/Sidebar';
 import UserContext from 'contexts/UserContext';
 import WithUser from 'components/WithUser';
 import Register from 'components/Auth/Register';
-import './index.css';
+import './index.scss';
 
 const App: React.FC = () => {
   const [user, setUser] = useState<null | string>('');

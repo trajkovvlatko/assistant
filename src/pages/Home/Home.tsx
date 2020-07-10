@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css';
+import './style.scss';
 import Login from 'components/Auth/Login';
 
 function Home() {

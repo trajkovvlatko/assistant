@@ -1,3 +1,9 @@
+@import './variables.scss';
+
+* {
+  font-size: $font-size;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -28,16 +34,41 @@ li {
   margin: 0;
 }
 
+a {
+  color: $secondary-color;
+  text-decoration: none;
+  font-size: $font-size;
+}
+
+h1 {
+  font-size: $h1-font-size;
+}
+
+h2 {
+  font-size: $h2-font-size;
+}
+
+h3 {
+  font-size: $h3-font-size;
+}
+
+button {
+  background-color: $button-background-color;
+  color: $button-font-color;
+  border: 0 none;
+  padding: 10px;
+  font-size: $button-font-size;
+  cursor: pointer;
+}
+
+hr {
+  color: $secondary-color;
+}
+
 .container {
   background-color: black;
   display: flex;
   min-height: 100vh;
-}
-
-.sidebar {
-  background-color: #ccc;
-  width: 200px;
-  padding: 15px;
 }
 
 .main {

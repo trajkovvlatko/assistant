@@ -1,6 +1,6 @@
 import React from 'react';
 import IContentItem from 'interfaces/IContentItem';
-import './style.css';
+import './style.scss';
 
 interface IProps {
   row: IContentItem;

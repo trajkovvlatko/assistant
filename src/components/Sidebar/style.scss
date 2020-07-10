@@ -1,0 +1,47 @@
+@import '../../variables.scss';
+
+.sidebar {
+  background-color: $primary-color;
+  width: 150px;
+  padding: 40px;
+  position: relative;
+
+  .main-menu {
+    li {
+      line-height: 300%;
+
+      a.active {
+        font-weight: 500;
+        color: $active-color;
+      }
+    }
+  }
+
+  .chat-options {
+    color: $note-color;
+    margin-top: 30px;
+
+    li {
+      line-height: 160%;
+    }
+  }
+
+  .bottom {
+    position: absolute;
+    bottom: 40px;
+
+    li {
+      line-height: 300%;
+
+      &.logout {
+        color: $secondary-color;
+        cursor: pointer;
+      }
+
+      h2 {
+        color: $secondary-color;
+        font-weight: 500;
+      }
+    }
+  }
+}

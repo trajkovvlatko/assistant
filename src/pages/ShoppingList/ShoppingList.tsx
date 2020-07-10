@@ -3,7 +3,7 @@ import firebase from 'firebase';
 import UserContext from 'contexts/UserContext';
 import {isValidUrl} from 'helpers/main';
 import List from 'components/ShoppingList/List';
-import './style.css';
+import './style.scss';
 
 function ShoppingList() {
   const {user} = useContext(UserContext);

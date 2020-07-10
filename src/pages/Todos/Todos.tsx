@@ -2,7 +2,7 @@ import React, {useContext, useRef} from 'react';
 import firebase from 'firebase';
 import UserContext from 'contexts/UserContext';
 import List from 'components/Todos/List';
-import './style.css';
+import './style.scss';
 
 function Todos() {
   const {user} = useContext(UserContext);
