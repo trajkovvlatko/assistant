@@ -43,7 +43,7 @@ function Notes() {
             placeholder='Add a note'
           />
           <button className='save' onClick={save}>
-            Save
+            Add
           </button>
         </div>
       </div>

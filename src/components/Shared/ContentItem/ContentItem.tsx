@@ -55,9 +55,12 @@ function ContentItem(props: IProps) {
         )}
       </div>
       {props.toggle && (
-        <button className='toggle' onClick={toggle}>
-          Toggle
-        </button>
+        <input
+          type='checkbox'
+          defaultChecked={props.toggle && props.toggle.bucket === 'completed'}
+          className='toggle'
+          onClick={toggle}
+        />
       )}
       <span className='user'>{row.user}</span>:{' '}
       <span className='content'>{row.note}</span>

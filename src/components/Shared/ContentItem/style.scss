@@ -43,19 +43,19 @@
   }
 
   .due-date span,
-  .genre span {
-    color: red;
+  .genre span,
+  .duration span {
+    color: $red-color;
   }
 
   .toggle {
-    background-color: transparent;
-    border: 0 none;
+    margin-right: 15px;
     cursor: pointer;
   }
 
   .link {
     font-size: 11px;
     margin-top: 11px;
-    margin-left: 63px;
+    margin-left: 35px;
   }
 }

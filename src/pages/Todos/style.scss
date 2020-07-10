@@ -3,7 +3,7 @@
     .form-wrapper-outer {
       &.todos-form {
         .todo {
-          width: 45%;
+          width: calc(100% - 560px);
         }
 
         .due-date {
