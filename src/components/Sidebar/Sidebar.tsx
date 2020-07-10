@@ -7,7 +7,10 @@ import './style.scss';
 function Sidebar() {
   const {user, setUser} = useContext(UserContext);
   const history = useHistory();
-  const [active, setActive] = useState<string>(history.location.pathname);
+  const defaultPathName = history.location.pathname;
+  const [active, setActive] = useState<string>(
+    defaultPathName !== '/' ? defaultPathName : '/chat'
+  );
 
   if (!user) return <></>;
 

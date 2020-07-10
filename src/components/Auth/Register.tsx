@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import firebase from 'firebase';
 import {useHistory} from 'react-router-dom';
@@ -12,9 +12,24 @@ const Register = () => {
   const [error, setError] = useState<null | string>(null);
   const history = useHistory();
   const {user} = useContext(UserContext);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged(() => {
+      if (loading) setLoading(false);
+    });
+    return () => unsubscribe();
+  }, [loading]);
+
+  const gotoChat = () => setTimeout(() => history.push('/chat'));
+
+  if (loading) {
+    if (user) gotoChat();
+    return <></>;
+  }
 
   if (user || process.env.REACT_APP_DISABLE_REGISTRATIONS) {
-    history.push('/chat');
+    gotoChat();
     return <></>;
   }
 

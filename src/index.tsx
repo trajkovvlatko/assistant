@@ -36,14 +36,21 @@ const App: React.FC = () => {
             <div className='main'>
               <Switch>
                 <Route path='/' exact component={Login} />
+                <Route path='/login' exact component={Login} />
                 <Route path='/register' exact component={Register} />
-                <WithUser>
-                  <Route path='/chat' exact component={Chat} />
-                  <Route path='/notes' exact component={Notes} />
-                  <Route path='/todos' exact component={Todos} />
-                  <Route path='/shopping-list' exact component={ShoppingList} />
-                  <Route path='/watch-list' exact component={WatchList} />
-                </WithUser>
+                {user && (
+                  <WithUser>
+                    <Route path='/chat' exact component={Chat} />
+                    <Route path='/notes' exact component={Notes} />
+                    <Route path='/todos' exact component={Todos} />
+                    <Route
+                      path='/shopping-list'
+                      exact
+                      component={ShoppingList}
+                    />
+                    <Route path='/watch-list' exact component={WatchList} />
+                  </WithUser>
+                )}
               </Switch>
             </div>
           </div>
