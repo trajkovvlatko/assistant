@@ -2,14 +2,34 @@
 
 .main {
   .shopping-list {
+    .main-wrapper-outer {
+      @media screen and (max-width: $breakpoint-small) {
+        height: auto;
+        bottom: 180px;
+      }
+    }
+
     .form-wrapper-outer {
       &.shopping-list-form {
+        @media screen and (max-width: $breakpoint-small) {
+          height: 125px;
+        }
+
         .item {
           width: calc(100% - 444px);
+
+          @media screen and (max-width: $breakpoint-small) {
+            width: 100%;
+            margin-bottom: 15px;
+          }
         }
 
         .link {
           width: 30%;
+
+          @media screen and (max-width: $breakpoint-small) {
+            width: calc(100% - 115px);
+          }
         }
       }
     }

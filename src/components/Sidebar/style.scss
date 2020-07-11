@@ -8,7 +8,7 @@
     width: 100vw;
     height: 40px;
     background-color: $primary-color;
-    position: absolute;
+    position: fixed;
     top: 0;
     z-index: 100;
   }
@@ -23,6 +23,11 @@
 
   &.with-user {
     display: block;
+
+    @supports (-webkit-touch-callout: none) {
+      padding-top: 120px;
+      height: calc(100vh - 120px);
+    }
   }
 
   .main-menu {

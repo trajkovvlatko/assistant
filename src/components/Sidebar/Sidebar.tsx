@@ -37,6 +37,11 @@ function Sidebar() {
 
   const toggleMobileSidebar = () => setVisible(!visible);
 
+  const onMenuItemClick = (pathName: string) => {
+    setVisible(false);
+    setActive(pathName);
+  };
+
   return (
     <div
       className={`sidebar ${user ? 'with-user' : ''} ${
@@ -53,7 +58,7 @@ function Sidebar() {
           <Link
             to='/chat'
             className={checkActive('/chat')}
-            onClick={() => setActive('/chat')}
+            onClick={() => onMenuItemClick('/chat')}
           >
             Chat
           </Link>
@@ -62,7 +67,7 @@ function Sidebar() {
           <Link
             to='/notes'
             className={checkActive('/notes')}
-            onClick={() => setActive('/notes')}
+            onClick={() => onMenuItemClick('/notes')}
           >
             Notes
           </Link>
@@ -71,7 +76,7 @@ function Sidebar() {
           <Link
             to='/todos'
             className={checkActive('/todos')}
-            onClick={() => setActive('/todos')}
+            onClick={() => onMenuItemClick('/todos')}
           >
             Todos
           </Link>
@@ -80,7 +85,7 @@ function Sidebar() {
           <Link
             to='/shopping-list'
             className={checkActive('/shopping-list')}
-            onClick={() => setActive('/shopping-list')}
+            onClick={() => onMenuItemClick('/shopping-list')}
           >
             Shopping list
           </Link>
@@ -89,7 +94,7 @@ function Sidebar() {
           <Link
             to='/watch-list'
             className={checkActive('/watch-list')}
-            onClick={() => setActive('/watch-list')}
+            onClick={() => onMenuItemClick('/watch-list')}
           >
             Watch list
           </Link>

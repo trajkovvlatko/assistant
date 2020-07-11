@@ -8,6 +8,10 @@
   flex-direction: column;
   justify-content: center;
 
+  @media screen and (max-width: $breakpoint-small) {
+    width: 90%;
+  }
+
   .auth {
     padding: 25px;
     padding-top: 40px;

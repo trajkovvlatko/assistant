@@ -2,10 +2,26 @@
 
 .main {
   .watch-list {
+    .main-wrapper-outer {
+      @media screen and (max-width: $breakpoint-small) {
+        height: auto;
+        bottom: 180px;
+      }
+    }
+
     .form-wrapper-outer {
       &.watch-list-form {
+        @media screen and (max-width: $breakpoint-small) {
+          height: 125px;
+        }
+
         .film {
           width: calc(100% - 340px);
+
+          @media screen and (max-width: $breakpoint-small) {
+            width: 100%;
+            margin-bottom: 15px;
+          }
         }
 
         .genre {
@@ -15,6 +31,10 @@
           height: 39px;
           margin-right: 15px;
           padding-left: 15px;
+
+          @media screen and (max-width: $breakpoint-small) {
+            width: calc(100% - 115px);
+          }
         }
       }
     }

@@ -1,17 +1,43 @@
+@import '../../variables.scss';
+
 .main {
   .todos {
+    .main-wrapper-outer {
+      @media screen and (max-width: $breakpoint-small) {
+        height: auto;
+        bottom: 180px;
+      }
+    }
+
     .form-wrapper-outer {
       &.todos-form {
+        @media screen and (max-width: $breakpoint-small) {
+          height: 125px;
+        }
+
         .todo {
           width: calc(100% - 560px);
+
+          @media screen and (max-width: $breakpoint-small) {
+            width: 100%;
+            margin-bottom: 15px;
+          }
         }
 
         .due-date {
           width: 20%;
+
+          @media screen and (max-width: $breakpoint-small) {
+            width: 31%;
+          }
         }
 
         .duration {
           width: 20%;
+
+          @media screen and (max-width: $breakpoint-small) {
+            width: 31%;
+          }
         }
       }
     }

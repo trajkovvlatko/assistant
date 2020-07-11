@@ -84,7 +84,7 @@ hr {
     height: 70px;
     background-color: $active-color;
     box-sizing: border-box;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     padding-top: 14px;
 
@@ -95,6 +95,10 @@ hr {
       box-sizing: border-box;
       margin-right: 15px;
       width: calc(100% - 125px);
+
+      @media screen and (max-width: $breakpoint-small) {
+        width: calc(100% - 115px)
+      }
     }
 
     button {
@@ -106,13 +110,31 @@ hr {
     width: 60%;
     margin: 0 auto;
     overflow: hidden;
+
+    @media screen and (max-width: $breakpoint-small) {
+      width: calc(100% - 30px)
+    }
   }
 
   .main-wrapper-outer {
-    max-height: calc(100vh - 80px);
+    height: calc(100vh - 70px);
     width: 100%;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
+
+    @media screen and (max-width: $breakpoint-small) {
+      -webkit-overflow-scrolling: touch;
+      position: absolute;
+      top: 0px;
+      bottom: 130px;
+      height: auto;
+    }
+
+    @supports (-webkit-touch-callout: none) {
+      position: absolute;
+      top: 0px;
+      bottom: 170px;
+    }
   }
 
   .main-wrapper-inner {
