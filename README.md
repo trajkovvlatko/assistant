@@ -1,3 +1,5 @@
+### Info
+
 This is a self hosted app with a chat, notes, todos, shopping list and a watch list, written in React and Typescript.
 
 All registered users under one instance get all the data. To separate the users, create another Firebase project, set the credentials and deploy to another server (or use locally).
@@ -42,3 +44,25 @@ Edit the variables in `src/variables.scss` to create a custom theme.
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+### Screenshots
+
+
+Chat
+
+![Alt text](/screenshots/chat.png?raw=true "Chat")
+
+Notes
+
+![Alt text](/screenshots/notes.png?raw=true "Notes")
+
+Todos
+
+![Alt text](/screenshots/todos.png?raw=true "Todos")
+
+Watch list
+
+![Alt text](/screenshots/watch-list.png?raw=true "Watch list")
+
+Shopping list
+
+![Alt text](/screenshots/shopping-list.png?raw=true "Shopping list")
