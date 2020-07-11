@@ -12,6 +12,11 @@
     top: 0;
     z-index: 100;
   }
+
+  @supports (-webkit-touch-callout: none) {
+    display: block;
+    position: relative;
+  }
 }
 
 .sidebar {
@@ -25,8 +30,7 @@
     display: block;
 
     @supports (-webkit-touch-callout: none) {
-      padding-top: 120px;
-      height: calc(100vh - 120px);
+      display: block;
     }
   }
 
@@ -44,6 +48,10 @@
   .chat-options {
     color: $note-color;
     margin-top: 30px;
+
+    @supports (-webkit-touch-callout: none) {
+      margin-top: 10px;
+    }
 
     li {
       line-height: 160%;
@@ -73,6 +81,13 @@
     width: 0px;
     padding: 0px;
 
+    @supports (-webkit-touch-callout: none) {
+      width: 100vw;
+      position: relative;
+      box-sizing: border-box;
+      height: 0;
+    }
+
     &.visible {
       width: 180px;
       position: absolute;
@@ -80,9 +95,19 @@
       bottom: 0;
       z-index: 50;
 
+      @supports (-webkit-touch-callout: none) {
+        position: relative;
+        height: 515px;
+        width: 100vw;
+      }
+
       .main-menu {
         padding: 15px;
         padding-top: 40px;
+
+        @supports (-webkit-touch-callout: none) {
+          padding-top: 10px;
+        }
       }
 
       .chat-options {
@@ -105,6 +130,7 @@
       padding-left: 15px;
       padding-right: 15px;
       line-height: 40px;
+      font-size: 23px;
       color: $secondary-color;
       cursor: pointer;
     }

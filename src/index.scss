@@ -12,6 +12,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
+
+  @supports (-webkit-touch-callout: none) {
+    overflow: auto;
+  }
 }
 
 code {
@@ -72,6 +76,10 @@ hr {
   background-color: black;
   display: flex;
   min-height: 100vh;
+
+  @supports (-webkit-touch-callout: none) {
+    display: block;
+  }
 }
 
 .main {
@@ -84,9 +92,18 @@ hr {
     height: 70px;
     background-color: $active-color;
     box-sizing: border-box;
-    position: fixed;
     bottom: 0;
     padding-top: 14px;
+    position: relative;
+    border-top: 1px solid $secondary-color;
+
+    @media screen and (max-width: $breakpoint-small) {
+      position: fixed;
+    }
+
+    @supports (-webkit-touch-callout: none) {
+      position: relative;
+    }
 
     input {
       height: 40px;
@@ -131,9 +148,8 @@ hr {
     }
 
     @supports (-webkit-touch-callout: none) {
-      position: absolute;
-      top: 0px;
-      bottom: 170px;
+      position: relative;
+      height: auto;
     }
   }
 
